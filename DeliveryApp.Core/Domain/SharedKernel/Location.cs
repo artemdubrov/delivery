@@ -17,7 +17,7 @@ public class Location : ValueObject
     public int Y { get; }
 
     public static Location MinLocation => new(1, 1);
-    public static Location MaxLocation =>  new(10, 10);
+    public static Location MaxLocation => new(10, 10);
     
     [ExcludeFromCodeCoverage]
     private Location()
