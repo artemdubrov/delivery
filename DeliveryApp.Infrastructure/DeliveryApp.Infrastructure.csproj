@@ -25,18 +25,25 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4"/>
-        <PackageReference Include="Quartz.Extensions.Hosting" Version="3.14.0"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageReference Include="Quartz.Extensions.Hosting" Version="3.14.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DeliveryApp.Core\DeliveryApp.Core.csproj"/>
+        <ProjectReference Include="..\DeliveryApp.Core\DeliveryApp.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Adapters\Grpc\GeoService\grpc.proto"/>
-        <None Remove="Adapters\Kafka\BasketConfirmed\Contract.proto"/>
-        <None Remove="Adapters\Grpc\GeoService\Contract.proto"/>
+        <None Remove="Adapters\Grpc\GeoService\grpc.proto" />
+        <None Remove="Adapters\Kafka\BasketConfirmed\Contract.proto" />
+        <None Remove="Adapters\Grpc\GeoService\Contract.proto" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Adapters\" />
+      <Folder Include="Adapters\Grpc\" />
+      <Folder Include="Adapters\Kafka\" />
+      <Folder Include="Adapters\Postgress\" />
     </ItemGroup>
 
 </Project>
