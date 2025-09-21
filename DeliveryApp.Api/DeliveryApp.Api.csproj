@@ -53,9 +53,6 @@
         <_ContentIncludedByDefault Remove="Adapters\Http\Contract\src\DeliveryApp.Api.Adapters.Http.Contract.src.OpenApi\wwwroot\openapi-original.json" />
     </ItemGroup>
     <ItemGroup>
-      <Compile Include="Adapters\Http\.gitkeep" />
-    </ItemGroup>
-    <ItemGroup>
       <Folder Include="Adapters\Kafka\" />
     </ItemGroup>
 </Project>
