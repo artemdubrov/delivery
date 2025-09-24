@@ -12,6 +12,7 @@ using DeliveryApp.Core.Application.UseCases.Queries.GetAllCouriers;
 using DeliveryApp.Core.Application.UseCases.Queries.GetNotCompletedOrders;
 using DeliveryApp.Core.Domain.Services;
 using DeliveryApp.Core.Ports;
+using DeliveryApp.Infrastructure.Adapters.Grpc.GeoService;
 using DeliveryApp.Infrastructure.Adapters.Postgres;
 using DeliveryApp.Infrastructure.Adapters.Postgres.Repositories;
 using MediatR;
@@ -107,6 +108,9 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<GeneratePathParamsValidationFilter>();
 });
 builder.Services.AddSwaggerGenNewtonsoftSupport();
+
+// gRPC
+builder.Services.AddScoped<IGeoClient, Client>();
 
 // CRON Jobs
 builder.Services.AddQuartz(configure =>

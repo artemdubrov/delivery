@@ -34,16 +34,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Adapters\Grpc\GeoService\grpc.proto" />
-        <None Remove="Adapters\Kafka\BasketConfirmed\Contract.proto" />
-        <None Remove="Adapters\Grpc\GeoService\Contract.proto" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Adapters\" />
       <Folder Include="Adapters\Grpc\" />
       <Folder Include="Adapters\Kafka\" />
       <Folder Include="Adapters\Postgress\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Adapters\Grpc\GeoService\Contract.proto" />
     </ItemGroup>
 
 </Project>
