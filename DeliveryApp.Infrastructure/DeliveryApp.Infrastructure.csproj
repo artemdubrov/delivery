@@ -44,4 +44,8 @@
       <Protobuf Include="Adapters\Grpc\GeoService\Contract.proto" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Protobuf Include="Adapters\Kafka\OrderStatusChanged\Contract.proto" />
+    </ItemGroup>
+    
 </Project>

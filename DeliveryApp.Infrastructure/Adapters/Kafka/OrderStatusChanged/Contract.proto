@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package order_status_changed;
+
+option go_package = "queues/orderstatuschangedpb";
+
+import "google/protobuf/timestamp.proto";
+
+message OrderCreatedIntegrationEvent {
+  string event_id = 1;
+  string order_id = 2;
+  google.protobuf.Timestamp occurred_at = 3;
+}
+
+message OrderCompletedIntegrationEvent {
+  string event_id = 1;
+  string order_id = 2;
+  string courier_id = 3;
+  google.protobuf.Timestamp occurred_at = 4;
+}

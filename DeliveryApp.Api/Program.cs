@@ -6,14 +6,17 @@ using DeliveryApp.Api.Adapters.Http.Contract.src.OpenApi.Filters;
 using DeliveryApp.Api.Adapters.Http.Contract.src.OpenApi.Formatters;
 using DeliveryApp.Api.Adapters.Http.Contract.src.OpenApi.OpenApi;
 using DeliveryApp.Api.Adapters.Kafka.BasketConfirmed;
+using DeliveryApp.Core.Application.DomainEventHandlers;
 using DeliveryApp.Core.Application.UseCases.Commands.AssignOrders;
 using DeliveryApp.Core.Application.UseCases.Commands.CreateOrder;
 using DeliveryApp.Core.Application.UseCases.Commands.MoveCouriers;
 using DeliveryApp.Core.Application.UseCases.Queries.GetAllCouriers;
 using DeliveryApp.Core.Application.UseCases.Queries.GetNotCompletedOrders;
+using DeliveryApp.Core.Domain.Model.OrderAggregate.DomainEvents;
 using DeliveryApp.Core.Domain.Services;
 using DeliveryApp.Core.Ports;
 using DeliveryApp.Infrastructure.Adapters.Grpc.GeoService;
+using DeliveryApp.Infrastructure.Adapters.Kafka.OrderStatusChanged;
 using DeliveryApp.Infrastructure.Adapters.Postgres;
 using DeliveryApp.Infrastructure.Adapters.Postgres.Repositories;
 using MediatR;
@@ -120,6 +123,13 @@ builder.Services.Configure<HostOptions>(options =>
     options.ShutdownTimeout = TimeSpan.FromSeconds(30);
 });
 builder.Services.AddHostedService<ConsumerService>();
+
+// Domain Event Handlers
+builder.Services.AddScoped<INotificationHandler<OrderCreatedDomainEvent>, OrderAssignedDomainEventHandler>();
+builder.Services.AddScoped<INotificationHandler<OrderCompletedDomainEvent>, OrderCompletedDomainEventHandler>();
+
+// Message Broker Producer
+builder.Services.AddScoped<IMessageBusProducer, Producer>();
 
 // CRON Jobs
 builder.Services.AddQuartz(configure =>
