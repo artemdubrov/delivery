@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using CSharpFunctionalExtensions;
 using DeliveryApp.Core.Domain.Model.CourierAggregate;
+using DeliveryApp.Core.Domain.Model.OrderAggregate.DomainEvents;
 using DeliveryApp.Core.Domain.Model.SharedKernel;
 using Primitives;
 
@@ -31,6 +32,9 @@ public sealed class Order : Aggregate<Guid>
         Location = location;
         Volume = volume;
         Status = OrderStatus.Created;
+        
+        //Публикуем доменное событие
+        RaiseDomainEvent(new OrderCreatedDomainEvent(Id));
     }
 
     /// <summary>
@@ -95,6 +99,9 @@ public sealed class Order : Aggregate<Guid>
         if (CourierId == null) return Errors.ErrCantCompleteNotAssignedOrder();
 
         Status = OrderStatus.Completed;
+
+        //Публикуем доменное событие
+        RaiseDomainEvent(new OrderCompletedDomainEvent(Id, (Guid)CourierId));
         return UnitResult.Success<Error>();
     }
 
