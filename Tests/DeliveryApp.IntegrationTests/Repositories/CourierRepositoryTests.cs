@@ -76,7 +76,7 @@ public class CourierRepositoryShould : IAsyncLifetime
 
         //Act
         var courierRepository = new CourierRepository(_context);
-        var unitOfWork = new UnitOfWork(_context, _mediator);
+        var unitOfWork = new UnitOfWork(_context);
         await courierRepository.AddAsync(courier);
         await unitOfWork.SaveChangesAsync();
 
@@ -100,7 +100,7 @@ public class CourierRepositoryShould : IAsyncLifetime
         var courier = courierCreateResult.Value;
 
         var courierRepository = new CourierRepository(_context);
-        var unitOfWork = new UnitOfWork(_context, _mediator);
+        var unitOfWork = new UnitOfWork(_context);
         await courierRepository.AddAsync(courier);
         await unitOfWork.SaveChangesAsync();
 
@@ -127,7 +127,7 @@ public class CourierRepositoryShould : IAsyncLifetime
 
         //Act
         var courierRepository = new CourierRepository(_context);
-        var unitOfWork = new UnitOfWork(_context, _mediator);
+        var unitOfWork = new UnitOfWork(_context);
         await courierRepository.AddAsync(courier);
         await unitOfWork.SaveChangesAsync();
 
@@ -157,7 +157,7 @@ public class CourierRepositoryShould : IAsyncLifetime
         var courier2 = courier2CreateResult.Value;
 
         var courierRepository = new CourierRepository(_context);
-        var unitOfWork = new UnitOfWork(_context, _mediator);
+        var unitOfWork = new UnitOfWork(_context);
         await courierRepository.AddAsync(courier1);
         await courierRepository.AddAsync(courier2);
         await unitOfWork.SaveChangesAsync();
